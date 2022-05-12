@@ -1,0 +1,26 @@
+<h1>Welcome to the bank!</h1>
+<p> <%= image_tag "bank.jpg"%> </p>
+<%= form_tag do %>
+    <p>Your Name: <%= text_field_tag(:bankerInput) %> </p>
+    <p>Amount: $ <%= text_field_tag(:amountInput) %> </p>
+    <p> <%= submit_tag "Deposit"%> </p>
+    <p> <%= submit_tag "Withdraw"%> </p>
+<% end %>
+
+<table >
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Balance </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @allBankers.each do |banker| %>
+            <tr>
+                <td> <%= banker.banker %> </td>
+                <td> <%= banker.amount %> </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
