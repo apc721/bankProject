@@ -4,7 +4,7 @@
     <p>Your Name: <%= text_field_tag(:bankerInput) %> </p>
     <p>Amount: $ <%= text_field_tag(:amountInput) %> </p>
     <p> <%= submit_tag "Deposit"%> </p>
-    <p> <%= submit_tag "Withdraw"%> </p>
+    <p> <%= submit_tag "Withdraw", onclick: "return confirm('Are you sure you want to withdraw this amount?')" %> </p>
 <% end %>
 
 <table >

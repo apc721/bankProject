@@ -1,14 +1,14 @@
 class BankProjectController < ApplicationController
   protect_from_forgery with: :null_session
   def index
-    puts "---------- In Index ----------"
+    puts "-------------- In Index --------------"
     @allBankers = Bank.all
     puts "# of Bankers = #{@allBankers.size}"
     @allBankers = @allBankers.sort_by {|banker| [-banker.banker,-banker.amount]}
   end
 
   def deposit
-    puts "---------- In Deposit ----------"
+    puts "-------------- In Deposit --------------"
     banker = params[:bankerInput]
     amount = params[:amountInput].to_f
     map = {"banker" => banker, "amount" => amount}
@@ -27,8 +27,8 @@ class BankProjectController < ApplicationController
     end
   end
 
-  def withdraw # if would bring them below $0 print message are you sure you want to withdraw?
-    puts "---------- In Withdraw ----------"
+  def withdraw
+    puts "-------------- In Withdraw --------------"
     banker = params[:bankerInput]
     amount = params[:amountInput].to_f
     if row = Bank.find_by(banker: banker)
