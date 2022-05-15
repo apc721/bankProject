@@ -19,6 +19,7 @@ class BankProjectController < ApplicationController
     end
     respond_to do |format|
       if row.save
+        BankerMailer.with(banker: banker).deposit_email.deliver_later
         puts "Success!"
         format.html{redirect_to bank_project_url}
       else
@@ -39,6 +40,7 @@ class BankProjectController < ApplicationController
     end
     respond_to do |format|
       if row.save
+        BankerMailer.with(banker: banker).withdraw_email.deliver_later
         puts "Success!"
         format.html{redirect_to bank_project_url}
       else
