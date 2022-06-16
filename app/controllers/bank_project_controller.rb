@@ -11,15 +11,15 @@ class BankProjectController < ApplicationController
     puts "-------------- In Deposit --------------"
     banker = params[:bankerInput]
     amount = params[:amountInput].to_f
-    map = {"banker" => banker, "amount" => amount}
-    if row = Bank.find_by(banker: banker)
-      row.amount += amount
+    if @row = Bank.find_by(banker: banker)
+      @row.amount += amount
     else
-      row = Bank.new(map)
+      map = {"banker" => banker, "amount" => amount}
+      @row = Bank.new(map)
     end
     respond_to do |format|
-      if row.save
-        BankerMailer.with(banker: banker).deposit_email.deliver_later
+      if @row.save
+        BankerMailer.with(row: @row).deposit_email.deliver_later
         puts "Success!"
         format.html{redirect_to bank_project_url}
       else
